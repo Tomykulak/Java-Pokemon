@@ -29,4 +29,7 @@ public class Arena {
     @EqualsAndHashCode.Exclude
     @JsonIgnore
     private Set<Trainer> trainers = new HashSet<>();
+
+    @ManyToOne
+    private Trainer trainer;
 }

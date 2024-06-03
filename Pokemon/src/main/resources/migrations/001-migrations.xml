@@ -26,6 +26,18 @@
             </column>
             <column name="name" type="varchar(255)"/>
         </createTable>
+        <!-- add reference to pokemon in trainer -->
+        <addColumn tableName="pokemon">
+            <column name="pokemon_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="pokemon"
+                                 baseColumnNames="trainer_id"
+                                 constraintName="fk_pokemon_trainer"
+                                 referencedTableName="trainer"
+                                 referencedColumnNames="id" />
     </changeSet>
 
     <changeSet id="3" author="tomykulak">
@@ -35,6 +47,18 @@
             </column>
             <column name="name" type="varchar(255)"/>
         </createTable>
+        <!-- add reference to trainer in arena -->
+        <addColumn tableName="trainer">
+            <column name="arena_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="trainer"
+                                 baseColumnNames="arena_id"
+                                 constraintName="fk_trainer_arena"
+                                 referencedTableName="arena"
+                                 referencedColumnNames="id"
+        />
     </changeSet>
 
 </databaseChangeLog>

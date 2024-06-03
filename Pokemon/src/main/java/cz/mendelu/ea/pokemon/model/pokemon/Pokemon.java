@@ -1,6 +1,7 @@
 package cz.mendelu.ea.pokemon.model.pokemon;
 
 import com.sun.istack.NotNull;
+import cz.mendelu.ea.pokemon.model.trainer.Trainer;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,6 +26,9 @@ public class Pokemon {
     private int hp;
     private int attack;
     private int defense;
+
+    @ManyToOne
+    private Trainer trainer;
 
     /*
     enum Element {
