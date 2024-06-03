@@ -29,14 +29,4 @@ public class Pokemon {
 
     @ManyToOne
     private Trainer trainer;
-
-    /*
-    enum Element {
-        GRASS,
-        FIRE,
-        WATER,
-        ELECTRIC,
-        NORMAL
-    }
-     */
 }
