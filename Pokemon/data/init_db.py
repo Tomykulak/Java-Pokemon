@@ -12,8 +12,8 @@ with open('pokemon.csv', mode='r') as csvfile:
     spamreader = csv.DictReader(csvfile, delimiter=',', quotechar='|')
     for row in spamreader:
         # Prepare insert query
-        if (row['type1'] != 'Grass' or row['type1'] != 'Fire' or row['type1'] != 'Water' or row['type1'] != 'Electric' or row['type1'] != 'Normal'):
-            continue
+        # if (row['type1'] != 'Grass' or row['type1'] != 'Fire' or row['type1'] != 'Water' or row['type1'] != 'Electric' or row['type1'] != 'Normal'):
+        #    continue
         
         insert_query = '''
         INSERT INTO pokemon (name, type1, hp, attack, defense)

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
+>
+
+    <changeSet id="1" author="tomykulak">
+        <createTable tableName="pokemon">
+            <column name="id" type="uuid" defaultValueComputed="gen_random_uuid()">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="element" type="varchar(255)"/>
+            <column name="hp" type="bigint"/>
+            <column name="attack" type="bigint"/>
+            <column name="defense" type="bigint"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="tomykulak">
+        <createTable tableName="trainer">
+            <column name="id" type="uuid" defaultValueComputed="gen_random_uuid()">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="name" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="tomykulak">
+        <createTable tableName="arena">
+            <column name="id" type="uuid" defaultValueComputed="gen_random_uuid()">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="name" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
+
+<!--
+pokemon
+    private UUID id;
+    private String name;
+    // battle stats
+    private String element; // type1
+    private int hp;
+    private int attack;
+    private int defense;
+
+trainer
+    private int id;
+    private String name;
+
+arena
+    private int id;
+    private String name;
+-->

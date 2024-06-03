@@ -1,30 +1,32 @@
 package cz.mendelu.ea.pokemon.model.pokemon;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import com.sun.istack.NotNull;
+import jakarta.persistence.*;
+import lombok.*;
 
-//
+import java.util.UUID;
+
 @Entity
-//
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class Pokemon {
-
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @NotNull
+    private UUID id;
 
     private String name;
 
     // battle stats
-    private Element element; // type1
+    private String element; // type1
     private int hp;
     private int attack;
     private int defense;
 
+    /*
     enum Element {
         GRASS,
         FIRE,
@@ -32,4 +34,5 @@ public class Pokemon {
         ELECTRIC,
         NORMAL
     }
+     */
 }
