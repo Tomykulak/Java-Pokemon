@@ -20,7 +20,7 @@ public class Pokemon {
     private String name;
 
     // battle stats
-    private Element element;
+    private Element element; // type1
     private int hp;
     private int attack;
     private int defense;
@@ -29,6 +29,7 @@ public class Pokemon {
         GRASS,
         FIRE,
         WATER,
-        ELECTRIC
+        ELECTRIC,
+        NORMAL
     }
 }
