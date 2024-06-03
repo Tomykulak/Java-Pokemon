@@ -20,5 +20,4 @@ public class Seeder {
 //        ...
 //        log.info("--- Default data seeded ---");
     }
-
 }

@@ -2,13 +2,15 @@ package cz.mendelu.ea.pokemon.model.pokemon;
 
 import lombok.Data;
 
+import java.util.UUID;
+
 @Data
 public class PokemonResponse {
-    private int id;
+    private UUID id;
     private String name;
 
-    public PokemonResponse(int id, String name) {
-        this.id = id;
-        this.name = name;
+    public PokemonResponse(Pokemon pokemon) {
+        this.id = pokemon.getId();
+        this.name = pokemon.getName();
     }
 }

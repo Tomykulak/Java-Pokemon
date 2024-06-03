@@ -1,4 +1,4 @@
-package cz.mendelu.ea.pokemon.model.pokemon;
+package cz.mendelu.ea.pokemon.model.trainer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -6,16 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/pokemons")
+@RequestMapping("/trainers")
 @Validated
-public class PokemonController {
+public class TrainerController {
+    private TrainerService trainerService;
 
     @Autowired
-    public PokemonController(PokemonService pokemonService) {
-        this.pokemonService = pokemonService;
+    public TrainerController(TrainerService trainerService) {
+        this.trainerService = trainerService;
     }
-
-    private final PokemonService pokemonService;
-
-
 }

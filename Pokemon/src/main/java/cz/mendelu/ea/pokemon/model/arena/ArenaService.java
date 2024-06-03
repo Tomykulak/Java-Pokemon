@@ -28,6 +28,7 @@ public class ArenaService {
     public Arena getArenaById(UUID arenaId) {
         return arenaRepository.findById(arenaId).orElseThrow(NotFoundException::new);
     }
+
     public List<Arena> getAllArenas() {
         return (List<Arena>) arenaRepository.findAll();
     }

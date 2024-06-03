@@ -1,4 +1,35 @@
 package cz.mendelu.ea.pokemon.model.trainer;
 
+import cz.mendelu.ea.pokemon.model.arena.ArenaService;
+import cz.mendelu.ea.pokemon.model.pokemon.Pokemon;
+import cz.mendelu.ea.pokemon.model.pokemon.PokemonService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+@Service
 public class TrainerService {
+    private final TrainerRepository trainerRepository;
+
+    private final PokemonService pokemonService;
+    private final ArenaService arenaService;
+
+    @Autowired
+    public TrainerService(TrainerRepository trainerRepository, PokemonService pokemonService, ArenaService arenaService) {
+        this.trainerRepository = trainerRepository;
+        this.pokemonService = pokemonService;
+        this.arenaService = arenaService;
+    }
+
+    public TrainerResponse createTrainer(TrainerRequest trainerRequest) {
+        Trainer trainer = new Trainer();
+        trainer.setName(
+                trainerRequest.getTrainerName()
+        );
+        trainerRepository.save(trainer);
+        return new TrainerResponse(trainer);
+    }
 }
