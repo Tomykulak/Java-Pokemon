@@ -7,16 +7,12 @@
 >
 
     <changeSet id="1" author="tomykulak">
-        <createTable tableName="pokemon">
+        <createTable tableName="arena">
             <column name="id" type="bigint" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
+                <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="name" type="varchar(255)"/>
-            <column name="element" type="varchar(255)"/>
-            <column name="hp" type="bigint"/>
-            <column name="attack" type="bigint"/>
-            <column name="defense" type="bigint"/>
-            <column name="trainer_id" type="bigint"/>
+            <column name="type" type="varchar(255)"/>
         </createTable>
     </changeSet>
 
@@ -25,64 +21,44 @@
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
+            <!-- add arena reference into trainer -->
+            <column name="arena_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_trainer_arena"
+                             referencedTableName="arena" referencedColumnNames="id"/>
+            </column>
+
             <column name="name" type="varchar(255)"/>
             <column name="level" type="bigint"/>
             <column name="wins" type="bigint"/>
             <column name="losses" type="bigint"/>
         </createTable>
-        <!-- add reference to pokemon in trainer -->
-        <addColumn tableName="pokemon">
-            <column name="pokemon_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </addColumn>
-
-        <addForeignKeyConstraint baseTableName="pokemon"
-                                 baseColumnNames="trainer_id"
-                                 constraintName="fk_pokemon_trainer"
-                                 referencedTableName="trainer"
-                                 referencedColumnNames="id" />
     </changeSet>
-
     <changeSet id="3" author="tomykulak">
-        <createTable tableName="arena">
+
+        <createTable tableName="pokemon">
             <column name="id" type="bigint" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false" />
+                <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(255)"/>
-            <column name="type" type="varchar(255)"/>
+            <column name="type1" type="varchar(255)"/>
+            <column name="type2" type="varchar(255)"/>
+            <column name="total" type="bigint"/>
+            <column name="hp" type="bigint"/>
+            <column name="attack" type="bigint"/>
+            <column name="defense" type="bigint"/>
+            <column name="sp_attack" type="bigint"/>
+            <column name="sp_defense" type="bigint"/>
+            <column name="speed" type="bigint"/>
+            <column name="generation" type="bigint"/>
+            <column name="legendary" type="boolean"/>
+            <column name="trainer_id" type="bigint"/>
         </createTable>
-
-        <addColumn tableName="trainer">
-            <column name="arena_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </addColumn>
-        <addForeignKeyConstraint baseTableName="trainer"
-                                 baseColumnNames="arena_id"
-                                 constraintName="fk_trainer_arena"
-                                 referencedTableName="arena"
+        <!-- add trainer reference into pokemon -->
+        <addForeignKeyConstraint baseTableName="pokemon"
+                                 baseColumnNames="trainer_id"
+                                 referencedTableName="trainer"
                                  referencedColumnNames="id"
-        />
+                                 constraintName="fk_pokemon_trainer"/>
     </changeSet>
 
 </databaseChangeLog>
-
-<!--
-pokemon
-    private UUID id;
-    private String name;
-    // battle stats
-    private String element; // type1
-    private int hp;
-    private int attack;
-    private int defense;
-
-trainer
-    private int id;
-    private String name;
-
-arena
-    private int id;
-    private String name;
--->

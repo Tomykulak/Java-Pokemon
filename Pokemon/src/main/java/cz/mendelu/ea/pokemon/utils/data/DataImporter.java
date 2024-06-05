@@ -70,7 +70,7 @@ public class DataImporter {
         return arenas;
     }
 
-    /*
+
     @PostConstruct
     @Transactional
     public void importPokemons() {
@@ -89,10 +89,21 @@ public class DataImporter {
             while ((line = reader.readNext()) != null) {
                 Pokemon pokemon = new Pokemon();
                 pokemon.setName(line[1]);
-                pokemon.setElement(line[2]);
+                pokemon.setType1(line[2]);
+                pokemon.setType2(line[3]);
+                pokemon.setTotal(Integer.parseInt(line[4]));
                 pokemon.setHp(Integer.parseInt(line[5]));
                 pokemon.setAttack(Integer.parseInt(line[6]));
                 pokemon.setDefense(Integer.parseInt(line[7]));
+                pokemon.setSp_attack(Integer.parseInt(line[8]));
+                pokemon.setSp_defense(Integer.parseInt(line[9]));
+                pokemon.setSpeed(Integer.parseInt(line[10]));
+                pokemon.setGeneration(Integer.parseInt(line[11]));
+                pokemon.setLegendary(Boolean.parseBoolean(line[12]));
+
+                int trainerId = Integer.parseInt(line[13]);
+                Trainer trainer = trainerService.findById(Long.valueOf(trainerId));
+                pokemon.setTrainer(trainer);
                 pokemons.add(pokemon);
             }
             log.info("Parsed {} pokemons", pokemons.size());
@@ -101,7 +112,7 @@ public class DataImporter {
         }
         return pokemons;
     }
-    */
+
 
     @PostConstruct
     @Transactional

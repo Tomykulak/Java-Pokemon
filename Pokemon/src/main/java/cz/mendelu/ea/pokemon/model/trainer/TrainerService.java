@@ -36,4 +36,8 @@ public class TrainerService {
         trainerRepository.save(trainer);
         return new TrainerResponse(trainer);
     }
+
+    public Trainer findById(Long id) {
+        return trainerRepository.findById(id).orElse(null);
+    }
 }

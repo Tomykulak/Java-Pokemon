@@ -14,6 +14,7 @@ import java.util.UUID;
 @Getter
 @Setter
 public class Pokemon {
+    // number,name,type1,type2,total,hp,attack,defense,sp_attack,sp_defense,speed,generation,legendary
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,10 +22,17 @@ public class Pokemon {
     private String name;
 
     // battle stats
-    private String element; // type1
+    private String type1;
+    private String type2;
+    private int total;
     private int hp;
     private int attack;
     private int defense;
+    private int sp_attack;
+    private int sp_defense;
+    private int speed;
+    private int generation;
+    private boolean legendary;
 
     //db relations
     @ManyToOne
