@@ -2,7 +2,6 @@ package cz.mendelu.ea.pokemon.model.pokemon;
 
 import lombok.Data;
 
-import java.util.UUID;
 
 @Data
 public class PokemonResponse {

@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Service
 public class PokemonService {
-    private PokemonRepository pokemonRepository;
+    private final PokemonRepository pokemonRepository;
 
     @Autowired
     PokemonService(PokemonRepository pokemonRepository) {
@@ -25,7 +25,7 @@ public class PokemonService {
         return pokemonRepository.findById(id);
     }
 
-    public List<Pokemon> getAllPokemons() {
+    public List<Pokemon> findAll() {
         List<Pokemon> pokemons = new ArrayList<>();
         pokemonRepository.findAll().forEach(pokemons::add);
         return pokemons;

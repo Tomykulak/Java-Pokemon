@@ -6,6 +6,7 @@ import cz.mendelu.ea.pokemon.model.pokemon.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -39,5 +40,11 @@ public class TrainerService {
 
     public Trainer findById(Long id) {
         return trainerRepository.findById(id).orElse(null);
+    }
+
+    public List<Trainer> findAll() {
+        List<Trainer> trainers = new ArrayList<>();
+        trainerRepository.findAll().forEach(trainers::add);
+        return trainers;
     }
 }
