@@ -1,7 +1,7 @@
 package cz.mendelu.ea.pokemon.model.trainer;
 
 
-import com.sun.istack.NotNull;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
