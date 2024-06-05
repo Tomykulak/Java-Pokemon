@@ -17,7 +17,11 @@ public class PokemonService {
         this.pokemonRepository = pokemonRepository;
     }
 
-    public Optional<Pokemon> getById(UUID id) {
+    public void saveMany(List<Pokemon> pokemons){
+        pokemonRepository.saveAll(pokemons);
+    }
+
+    public Optional<Pokemon> getById(Long id) {
         return pokemonRepository.findById(id);
     }
 

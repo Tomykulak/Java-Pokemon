@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.UUID;
 
-public interface TrainerRepository extends CrudRepository<Trainer, UUID> {
+public interface TrainerRepository extends CrudRepository<Trainer, Long> {
 
 }

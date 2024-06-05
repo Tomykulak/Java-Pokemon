@@ -15,17 +15,22 @@ public class ArenaService {
         this.arenaRepository = arenaRepository;
     }
 
-    public void addTrainerToArena(UUID arenaId, Trainer trainer) {
+    // save into database
+    public void saveMany(List<Arena> arenas) {
+        arenaRepository.saveAll(arenas);
+    }
+
+    public void addTrainerToArena(Long arenaId, Trainer trainer) {
         Arena arena = arenaRepository.findById(arenaId).orElseThrow(NotFoundException::new);
         arena.getTrainers().add(trainer);
         arenaRepository.save(arena);
     }
 
-    public void deleteArena(UUID arenaId) {
+    public void deleteArena(Long arenaId) {
         arenaRepository.deleteById(arenaId);
     }
 
-    public Arena getArenaById(UUID arenaId) {
+    public Arena getArenaById(Long arenaId) {
         return arenaRepository.findById(arenaId).orElseThrow(NotFoundException::new);
     }
 

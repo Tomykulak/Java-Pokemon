@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class TrainerResponse {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private int id;
+    private Long id;
 
     private String name;
 

@@ -24,6 +24,10 @@ public class TrainerService {
         this.arenaService = arenaService;
     }
 
+    public void saveMany(List<Trainer> trainers) {
+        trainerRepository.saveAll(trainers);
+    }
+
     public TrainerResponse createTrainer(TrainerRequest trainerRequest) {
         Trainer trainer = new Trainer();
         trainer.setName(

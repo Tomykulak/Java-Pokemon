@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Data
 public class PokemonResponse {
-    private UUID id;
+    private Long id;
     private String name;
 
     public PokemonResponse(Pokemon pokemon) {

@@ -20,15 +20,13 @@ import java.util.Set;
 @Setter
 public class Arena {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String name;
-
+    private String type;
+    //db relations
     @OneToMany(mappedBy = "arena")
     @EqualsAndHashCode.Exclude
     private Set<Trainer> trainers = new HashSet<>();
-
-    @ManyToOne
-    private Trainer trainer;
 }

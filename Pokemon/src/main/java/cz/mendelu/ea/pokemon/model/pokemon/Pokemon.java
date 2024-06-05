@@ -15,8 +15,8 @@ import java.util.UUID;
 @Setter
 public class Pokemon {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String name;
 
@@ -26,6 +26,7 @@ public class Pokemon {
     private int attack;
     private int defense;
 
+    //db relations
     @ManyToOne
     private Trainer trainer;
 }
