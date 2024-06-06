@@ -13,5 +13,4 @@ INSERT INTO trainer (id, name, level, wins, losses, arena_id) VALUES
 INSERT INTO pokemon (id, name, type1, type2, total, hp, attack, defense, sp_attack, sp_defense, speed, generation, legendary, trainer_id) VALUES
                                                                                                                                               (1, 'Pikachu', 'Electric', NULL, 320, 35, 55, 40, 50, 50, 90, 1, FALSE, 1),
                                                                                                                                               (2, 'Charizard', 'Fire', 'Flying', 534, 78, 84, 78, 109, 85, 100, 1, FALSE, 1),
-                                                                                                                                              (3, 'Squirtle', 'Water', NULL, 314, 44, 48, 65, 50, 64, 43, 1, FALSE, 2),
-                                                                                                                                              (4, 'Bulbasaur', 'Grass', 'Poison', 318, 45, 49, 49, 65, 65, 45, 1, FALSE, 2);
+                                                                                                                                              (3, 'Squirtle', 'Water', NULL, 314, 44, 48, 65, 50, 64, 43, 1, FALSE, 2);

@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 @AllArgsConstructor
 @Validated
 public class PokemonRequest {
+    private long id;
     @NotNull
     private String name;
     private String type1;
@@ -28,5 +29,26 @@ public class PokemonRequest {
     public PokemonRequest(String name, String type1){
         this.name = name;
         this.type1 = type1;
+    }
+
+    // constructor for invalid create test
+    public PokemonRequest(String type1, int hp){
+        this.type1 = type1;
+        this.hp = hp;
+    }
+
+    public void toPokemon(Pokemon pokemon){
+        pokemon.setId(id);
+        pokemon.setName(name);
+        pokemon.setType1(type1);
+        pokemon.setType2(type2);
+        pokemon.setTotal(total);
+        pokemon.setHp(hp);
+        pokemon.setDefense(defense);
+        pokemon.setSp_attack(sp_attack);
+        pokemon.setSp_defense(sp_defense);
+        pokemon.setSpeed(speed);
+        pokemon.setGeneration(generation);
+        pokemon.setLegendary(legendary);
     }
 }

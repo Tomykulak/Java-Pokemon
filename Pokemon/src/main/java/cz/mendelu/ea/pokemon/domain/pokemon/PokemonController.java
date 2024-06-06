@@ -44,13 +44,13 @@ public class PokemonController {
         return ObjectResponse.of(pokemon, PokemonResponse::new);
     }
 
-    @PostMapping(value = "", produces = "application/json")
+    @PostMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    @Valid
+    @ResponseBody
     public ObjectResponse<PokemonResponse> createPokemon(@RequestBody PokemonRequest pokemonRequest) {
         try {
             Pokemon pokemon = new Pokemon();
-
+            pokemon.setId(pokemonRequest.getId());
             pokemon.setName(pokemonRequest.getName());
             pokemon.setType1(pokemonRequest.getType1());
             pokemon.setType2(pokemonRequest.getType2());
@@ -66,19 +66,21 @@ public class PokemonController {
             pokemonService.createPokemon(pokemon);
             return ObjectResponse.of(pokemon, PokemonResponse::new);
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "failed to create pokemon", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "failed to create pokemon", e);
         }
     }
 
 
-    @PutMapping(value = "/{id}", produces = "json/application")
+    @PutMapping(value = "/{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @Valid
     @Transactional
-    public ObjectResponse<PokemonResponse> updatePokemon(@PathVariable Long id, @RequestBody PokemonRequest pokemonRequest) {
+    public ObjectResponse<PokemonResponse> updatePokemon(@PathVariable Long id, @RequestBody @Valid PokemonRequest pokemonRequest) {
         Pokemon pokemon = pokemonService
                 .findById(id)
                 .orElseThrow(NotFoundException::new);
+
+        pokemonRequest.toPokemon(pokemon);
         pokemonService.updatePokemon(id, pokemon);
         return ObjectResponse.of(pokemon, PokemonResponse::new);
     }

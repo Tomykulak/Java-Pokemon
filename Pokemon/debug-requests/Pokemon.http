@@ -7,8 +7,8 @@ Content-Type: application/json
 
 {
   "id": 501,
-  "name": "Tomysaur",
-  "type1": "Water",
+  "name": "tomysaur",
+  "type1": "Grass",
   "type2": "Ground",
   "total": 500,
   "hp": 20,

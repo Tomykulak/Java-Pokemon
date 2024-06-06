@@ -1,5 +1,6 @@
 package cz.mendelu.ea.pokemon.utils.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

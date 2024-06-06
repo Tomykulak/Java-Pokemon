@@ -11,6 +11,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -42,18 +44,63 @@ public class PokemonIntegrationTest {
                 .statusCode(200)
                 .body("content.name", is("Pikachu"));
     }
+    @Test
+    public void testGetInvalidPokemonId(){
+        given()
+                .when()
+                    .get("/pokemons/{id}", -1)
+                .then()
+                    .statusCode(404);
+    }
 
     @Test
-    public void createPokemon(){
-        PokemonRequest pokemonRequest = new PokemonRequest("LupiTest", "Testovaci");
+    public void testCreatePokemon() {
+        String id = given()
+                .contentType("application/json")
+                .body("""
+                        {
+                        "id": 100,
+                        "name": "Tomy"
+                         }
+                        """)
+                .when()
+                .post("/pokemons")
+                .then()
+                .statusCode(201)
+                .body("content.name", is("Tomy"))
+                .extract().path("id");
+    }
 
+    @Test
+    public void testCreateInvalidPokemon() {
         given()
                 .contentType("application/json")
-                .body(pokemonRequest)
-        .when()
+                .body("""
+                        {
+                            "name":""
+                        }
+                        """)
+                .when()
                 .post("/pokemons")
-        .then()
-                .statusCode(201)
-                .body("content.name", is("LupiTest"));
+                .then()
+                .statusCode(400);
+    }
+
+    @Test
+    public void testUpdatePokemon() {
+        given()
+                .contentType("application/json")
+                .accept("application/json")
+                .body("""
+                        {
+                            "id": 1,
+                            "name":"updatedPokemon"
+                        }
+                        """)
+                .when()
+                .put("/pokemons/{id}", 1)
+                .then()
+                .statusCode(HttpStatus.ACCEPTED.value())
+                .body("content.name", equalTo("updatedPokemon"));
     }
 }

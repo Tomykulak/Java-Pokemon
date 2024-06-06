@@ -38,7 +38,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.PUT, "/*").hasAnyRole("SUPERADMIN")
+                        //.requestMatchers(HttpMethod.PUT, "/*").hasAnyRole("SUPERADMIN")
                         .anyRequest().permitAll()
                 )
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/**"))

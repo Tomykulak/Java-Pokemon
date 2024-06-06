@@ -3,6 +3,7 @@ package cz.mendelu.ea.pokemon.domain.pokemon;
 
 import cz.mendelu.ea.pokemon.domain.trainer.Trainer;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 @Entity
@@ -17,6 +18,7 @@ public class Pokemon {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
     private String name;
 
     // battle stats
