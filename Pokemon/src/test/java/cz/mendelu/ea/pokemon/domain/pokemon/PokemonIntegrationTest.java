@@ -35,6 +35,15 @@ public class PokemonIntegrationTest {
     }
 
     @Test
+    public void testGetPokemons(){
+        given()
+                .when()
+                    .get("/pokemons")
+                .then()
+                    .statusCode(200);
+    }
+
+    @Test
     public void testGetPokemonById(){
         given()
             .when()
