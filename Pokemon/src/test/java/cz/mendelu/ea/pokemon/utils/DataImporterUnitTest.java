@@ -2,21 +2,13 @@ package cz.mendelu.ea.pokemon.utils;
 
 import cz.mendelu.ea.pokemon.domain.arena.Arena;
 import cz.mendelu.ea.pokemon.domain.arena.ArenaService;
-import cz.mendelu.ea.pokemon.domain.pokemon.Pokemon;
-import cz.mendelu.ea.pokemon.domain.pokemon.PokemonService;
-import cz.mendelu.ea.pokemon.domain.trainer.Trainer;
-import cz.mendelu.ea.pokemon.domain.trainer.TrainerService;
 import cz.mendelu.ea.pokemon.utils.data.DataImporter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
 import org.mockito.MockitoAnnotations;
