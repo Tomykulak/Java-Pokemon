@@ -24,4 +24,9 @@ public class PokemonRequest {
     private int speed;
     private int generation;
     private boolean legendary;
+
+    public PokemonRequest(String name, String type1){
+        this.name = name;
+        this.type1 = type1;
+    }
 }
