@@ -29,8 +29,8 @@ public class OpenAPIConfig {
                         new SecurityRequirement().addList(OAUTH_SCHEME_NAME)
                 )
                 .info(new Info()
-                        .title("Watches")
-                        .description("API for managing watches.")
+                        .title("Pokemons")
+                        .description("API for managing pokemons.")
                         .version("6.9")
                 );
     }

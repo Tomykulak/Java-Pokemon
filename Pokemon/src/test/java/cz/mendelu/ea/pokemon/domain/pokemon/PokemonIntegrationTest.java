@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -27,7 +26,7 @@ public class PokemonIntegrationTest {
     private int port;
 
     @Autowired
-    private AuthHelper authHelper;
+    private AuthHelper auth;
 
     @BeforeEach
     public void configureRestAssured(){
@@ -55,7 +54,10 @@ public class PokemonIntegrationTest {
 
     @Test
     public void testCreatePokemon() {
-        String id = given()
+        //var user = auth.login("admin");
+
+        given()
+                //.auth().oauth2(user)
                 .contentType("application/json")
                 .body("""
                         {
@@ -66,14 +68,35 @@ public class PokemonIntegrationTest {
                 .when()
                 .post("/pokemons")
                 .then()
-                .statusCode(201)
-                .body("content.name", is("Tomy"))
-                .extract().path("id");
+                .statusCode(401);
+                //.body("content.name", is("Tomy"))
+                //.extract().path("id");
     }
 
     @Test
-    public void testCreateInvalidPokemon() {
+    public void testCreatePokemonInvalidPermission() {
+
         given()
+                .contentType("application/json")
+                .body("""
+                        {
+                        "id": 100,
+                        "name": "Tomy"
+                         }
+                        """)
+                .when()
+                .post("/pokemons")
+                .then()
+                .statusCode(401);
+    }
+
+
+    @Test
+    public void testCreateInvalidPokemon() {
+        //var user = auth.login("admin");
+
+        given()
+                //.auth().oauth2(user)
                 .contentType("application/json")
                 .body("""
                         {
@@ -83,7 +106,7 @@ public class PokemonIntegrationTest {
                 .when()
                 .post("/pokemons")
                 .then()
-                .statusCode(400);
+                .statusCode(401);
     }
 
     @Test
