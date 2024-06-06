@@ -1,13 +1,17 @@
 package cz.mendelu.ea.pokemon.domain.pokemon;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class PokemonResponse {
     private Long id;
+    @NotEmpty
     private String name;
     private String type1;
     private String type2;

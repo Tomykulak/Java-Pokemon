@@ -46,9 +46,24 @@ public class PokemonController {
     @PostMapping(value = "", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     @Valid
-    public PokemonResponse createPokemon(@RequestBody PokemonRequest pokemonRequest) {
+    public ObjectResponse<PokemonResponse> createPokemon(@RequestBody PokemonRequest pokemonRequest) {
         try {
-            return pokemonService.createPokemon(pokemonRequest);
+            Pokemon pokemon = new Pokemon();
+
+            pokemon.setName(pokemonRequest.getName());
+            pokemon.setType1(pokemonRequest.getType1());
+            pokemon.setType2(pokemonRequest.getType2());
+            pokemon.setTotal(pokemonRequest.getTotal());
+            pokemon.setHp(pokemonRequest.getHp());
+            pokemon.setAttack(pokemonRequest.getAttack());
+            pokemon.setDefense(pokemonRequest.getDefense());
+            pokemon.setSp_attack(pokemonRequest.getSp_attack());
+            pokemon.setSp_defense(pokemonRequest.getSp_defense());
+            pokemon.setSpeed(pokemonRequest.getSpeed());
+            pokemon.setGeneration(pokemonRequest.getGeneration());
+            pokemon.setLegendary(pokemonRequest.isLegendary());
+            pokemonService.createPokemon(pokemon);
+            return ObjectResponse.of(pokemon, PokemonResponse::new);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "failed to create pokemon", e);
         }
