@@ -3,6 +3,7 @@ package cz.mendelu.ea.pokemon.domain.pokemon;
 import cz.mendelu.ea.pokemon.utils.exceptions.NotFoundException;
 import cz.mendelu.ea.pokemon.utils.response.ArrayResponse;
 import cz.mendelu.ea.pokemon.utils.response.ObjectResponse;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -67,5 +68,18 @@ public class PokemonController {
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "failed to create pokemon", e);
         }
+    }
+
+    
+    @PutMapping(value = "/{id}", produces = "json/application")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @Valid
+    @Transactional
+    public ObjectResponse<PokemonResponse> updatePokemon(@PathVariable Long id, @RequestBody PokemonRequest pokemonRequest) {
+        Pokemon pokemon = pokemonService
+                .findById(id)
+                .orElseThrow(NotFoundException::new);
+        pokemonService.updatePokemon(id, pokemon);
+        return ObjectResponse.of(pokemon, PokemonResponse::new);
     }
 }

@@ -32,4 +32,9 @@ public class PokemonService {
     public Pokemon createPokemon(Pokemon pokemon) {
         return pokemonRepository.save(pokemon);
     }
+
+    public Pokemon updatePokemon(Long id, Pokemon pokemon) {
+        pokemon.setId(id);
+        return pokemonRepository.save(pokemon);
+    }
 }
