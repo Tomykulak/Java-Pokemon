@@ -3,6 +3,7 @@ Java Spring DB Backend Pokemons
 
 ### Run container with DB and keycloak
 - `docker-compose up --build -d`
+- `docker-compose down`
 ### Run database
 - create database`docker run --rm --name postgres -p 5433:5432 -e POSTGRES_PASSWORD=123 postgres`
 - login: `postgres:123`
