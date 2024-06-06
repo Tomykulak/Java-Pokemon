@@ -33,6 +33,11 @@ public class StatisticsController {
         var pokemonStatistics = statisticsService.getPokemonStatistics();
         return new ObjectResponse<>(pokemonStatistics, 1);
     }
+    @GetMapping(value = "trainer", produces = "application/json")
+    public ObjectResponse<TrainerStatistics> getTrainerStatistics(){
+        var trainerStatistics = statisticsService.getTrainerStatistics();
+        return new ObjectResponse<>(trainerStatistics, 1);
+    }
 
     /*
     @GetMapping(value = "/{id}", produces = "application/json")

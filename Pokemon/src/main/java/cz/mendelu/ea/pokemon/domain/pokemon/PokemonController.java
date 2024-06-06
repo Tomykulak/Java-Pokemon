@@ -33,7 +33,6 @@ public class PokemonController {
     }
     private final PokemonService pokemonService;
 
-
     @GetMapping(value = "", produces = "application/json")
     @Valid
     @Operation(

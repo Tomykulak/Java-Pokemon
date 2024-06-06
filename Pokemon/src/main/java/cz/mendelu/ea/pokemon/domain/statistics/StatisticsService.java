@@ -80,10 +80,27 @@ public class StatisticsService {
                 countPokemons(),
                 countTrainers(),
                 countArenas()
-                //findHighestAttackPokemon(),
-                //findHighestDefensePokemon()
         );
     }
+
+    public TrainerStatistics getTrainerStatistics() {
+        return new TrainerStatistics(
+                calculateAverageWinRate()
+        );
+    }
+
+    public String calculateAverageWinRate() {
+        double averageWinRate = trainerService.findAll().stream()
+                .mapToDouble(trainer -> {
+                    int totalBattles = trainer.getWins() + trainer.getLosses();
+                    return totalBattles == 0 ? 0.0 : (double) trainer.getWins() / totalBattles * 100;
+                })
+                .average()
+                .orElse(0.0); // Return 0.0 if there are no trainers
+
+        return String.format("%.2f%%", averageWinRate);
+    }
+
 
     public double calculateAveragePokemonsAttack(List<Pokemon> pokemons){
         return pokemons.stream()
@@ -98,7 +115,6 @@ public class StatisticsService {
                 .average()
                 .orElse(0.0);
     }
-
 
     public PokemonStatistics getPokemonStatistics() {
         List<Pokemon> pokemons = pokemonService.findAll();

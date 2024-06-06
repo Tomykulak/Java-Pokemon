@@ -24,8 +24,21 @@ Java Spring DB Backend Pokemons
 http://localhost:8090/swagger-ui/index.html
 
 ### Endpoints
+### Pokemons
 http://localhost:8090/pokemons
 
 http://localhost:8090/statistics
 
 http://localhost:8090/statistics/pokemon
+
+http://localhost:8090/trainers
+
+### Trainers
+http://localhost:8090/trainers
+
+### Statistics
+http://localhost:8090/statistics
+
+http://localhost:8090/statistics/pokemon
+
+http://localhost:8090/statistics/trainer
