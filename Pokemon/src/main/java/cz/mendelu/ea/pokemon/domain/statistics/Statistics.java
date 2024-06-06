@@ -12,6 +12,4 @@ public class Statistics {
     Map<String, Long> countPokemons;
     Map<String, Long> countTrainers;
     Map<String, Long> countArenas;
-    // PokemonResponse findHighestAttackPokemon;
-    // PokemonResponse findHighestDefensePokemon;
 }
