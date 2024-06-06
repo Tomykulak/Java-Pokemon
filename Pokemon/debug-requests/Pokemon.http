@@ -9,7 +9,7 @@ Content-Type: application/json
   "id": 501,
   "name": "Tomysaur",
   "type1": "Water",
-  "type2": "Flying",
+  "type2": "Ground",
   "total": 500,
   "hp": 20,
   "attack": 33,

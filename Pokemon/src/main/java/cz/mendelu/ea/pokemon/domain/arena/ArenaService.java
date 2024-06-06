@@ -33,7 +33,7 @@ public class ArenaService {
         return arenaRepository.findById(arenaId).orElseThrow(NotFoundException::new);
     }
 
-    public List<Arena> getAllArenas() {
+    public List<Arena> findAll() {
         return (List<Arena>) arenaRepository.findAll();
     }
 }

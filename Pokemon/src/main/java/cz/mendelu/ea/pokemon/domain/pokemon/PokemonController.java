@@ -70,7 +70,7 @@ public class PokemonController {
         }
     }
 
-    
+
     @PutMapping(value = "/{id}", produces = "json/application")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @Valid
