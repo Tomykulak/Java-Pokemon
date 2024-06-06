@@ -1,15 +1,12 @@
-package cz.mendelu.ea.pokemon.model.trainer;
+package cz.mendelu.ea.pokemon.domain.trainer;
 
-import cz.mendelu.ea.pokemon.model.arena.ArenaService;
-import cz.mendelu.ea.pokemon.model.pokemon.Pokemon;
-import cz.mendelu.ea.pokemon.model.pokemon.PokemonService;
+import cz.mendelu.ea.pokemon.domain.arena.ArenaService;
+import cz.mendelu.ea.pokemon.domain.pokemon.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Service
 public class TrainerService {

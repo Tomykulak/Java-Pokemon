@@ -1,7 +1,7 @@
-package cz.mendelu.ea.pokemon.model.trainer;
+package cz.mendelu.ea.pokemon.domain.trainer;
 
-import cz.mendelu.ea.pokemon.model.arena.Arena;
-import cz.mendelu.ea.pokemon.model.pokemon.Pokemon;
+import cz.mendelu.ea.pokemon.domain.arena.Arena;
+import cz.mendelu.ea.pokemon.domain.pokemon.Pokemon;
 import jakarta.persistence.*;
 import lombok.*;
 

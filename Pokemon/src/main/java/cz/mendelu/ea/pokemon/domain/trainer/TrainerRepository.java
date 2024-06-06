@@ -1,8 +1,6 @@
-package cz.mendelu.ea.pokemon.model.trainer;
+package cz.mendelu.ea.pokemon.domain.trainer;
 
 import org.springframework.data.repository.CrudRepository;
-
-import java.util.UUID;
 
 public interface TrainerRepository extends CrudRepository<Trainer, Long> {
 

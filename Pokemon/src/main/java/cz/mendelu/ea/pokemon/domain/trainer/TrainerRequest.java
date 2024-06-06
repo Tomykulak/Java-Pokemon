@@ -1,9 +1,8 @@
-package cz.mendelu.ea.pokemon.model.trainer;
+package cz.mendelu.ea.pokemon.domain.trainer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.NotFound;
 
 @AllArgsConstructor
 @NoArgsConstructor

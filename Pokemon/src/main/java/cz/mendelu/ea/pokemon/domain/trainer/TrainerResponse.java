@@ -1,4 +1,4 @@
-package cz.mendelu.ea.pokemon.model.trainer;
+package cz.mendelu.ea.pokemon.domain.trainer;
 
 
 

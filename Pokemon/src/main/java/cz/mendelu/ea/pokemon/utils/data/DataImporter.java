@@ -2,12 +2,12 @@ package cz.mendelu.ea.pokemon.utils.data;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
-import cz.mendelu.ea.pokemon.model.arena.Arena;
-import cz.mendelu.ea.pokemon.model.arena.ArenaService;
-import cz.mendelu.ea.pokemon.model.pokemon.Pokemon;
-import cz.mendelu.ea.pokemon.model.pokemon.PokemonService;
-import cz.mendelu.ea.pokemon.model.trainer.Trainer;
-import cz.mendelu.ea.pokemon.model.trainer.TrainerService;
+import cz.mendelu.ea.pokemon.domain.arena.Arena;
+import cz.mendelu.ea.pokemon.domain.arena.ArenaService;
+import cz.mendelu.ea.pokemon.domain.pokemon.Pokemon;
+import cz.mendelu.ea.pokemon.domain.pokemon.PokemonService;
+import cz.mendelu.ea.pokemon.domain.trainer.Trainer;
+import cz.mendelu.ea.pokemon.domain.trainer.TrainerService;
 import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
@@ -19,9 +19,7 @@ import org.springframework.stereotype.Service;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @Slf4j

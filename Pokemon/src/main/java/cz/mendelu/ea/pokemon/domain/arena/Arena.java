@@ -1,7 +1,7 @@
-package cz.mendelu.ea.pokemon.model.arena;
+package cz.mendelu.ea.pokemon.domain.arena;
 
 
-import cz.mendelu.ea.pokemon.model.trainer.Trainer;
+import cz.mendelu.ea.pokemon.domain.trainer.Trainer;
 import jakarta.persistence.*;
 
 import lombok.*;
@@ -25,6 +25,7 @@ public class Arena {
 
     private String name;
     private String type;
+
     //db relations
     @OneToMany(mappedBy = "arena")
     @EqualsAndHashCode.Exclude

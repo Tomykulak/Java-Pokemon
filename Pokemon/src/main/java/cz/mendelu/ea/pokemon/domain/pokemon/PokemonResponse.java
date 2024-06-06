@@ -1,9 +1,11 @@
-package cz.mendelu.ea.pokemon.model.pokemon;
+package cz.mendelu.ea.pokemon.domain.pokemon;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 
 @Data
+@AllArgsConstructor
 public class PokemonResponse {
     private Long id;
     private String name;

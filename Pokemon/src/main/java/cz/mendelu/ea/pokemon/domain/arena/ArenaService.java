@@ -1,11 +1,10 @@
-package cz.mendelu.ea.pokemon.model.arena;
+package cz.mendelu.ea.pokemon.domain.arena;
 
-import cz.mendelu.ea.pokemon.model.trainer.Trainer;
+import cz.mendelu.ea.pokemon.domain.trainer.Trainer;
 import org.springframework.stereotype.Service;
 import cz.mendelu.ea.pokemon.utils.exceptions.NotFoundException;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class ArenaService {
