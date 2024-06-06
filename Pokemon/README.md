@@ -19,3 +19,13 @@ Java Spring DB Backend Pokemons
 - enable: email verified
 - add credentials: `1234` not temporary
 - assign role `ROLE_SUPERADMIN` to user `admin` from client `web-app`
+
+### Swagger docs
+http://localhost:8090/swagger-ui/index.html
+
+### Endpoints
+http://localhost:8090/pokemons
+
+http://localhost:8090/statistics
+
+http://localhost:8090/statistics/pokemon

@@ -48,7 +48,7 @@ public class DataImporter {
     }
 
     // load arenas
-    private List<Arena> parseArenas(Resource resource) {
+    public List<Arena> parseArenas(Resource resource) {
         List<Arena> arenas = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader(resource.getFile()))) {
             reader.readNext();
@@ -78,7 +78,7 @@ public class DataImporter {
         pokemonService.saveMany(pokemonList);  // Assuming there's a batch save method in pokemonService
     }
     // load pokemon
-    private List<Pokemon> parsePokemons(Resource resource) {
+    public List<Pokemon> parsePokemons(Resource resource) {
         List<Pokemon> pokemons = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader(resource.getFile()))) {
             reader.readNext();
@@ -122,7 +122,7 @@ public class DataImporter {
     }
 
     // load trainers
-    private List<Trainer> parseTrainers(Resource resource) {
+    public List<Trainer> parseTrainers(Resource resource) {
         List<Trainer> trainers = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader(resource.getFile()))) {
             reader.readNext();

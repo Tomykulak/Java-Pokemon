@@ -3,6 +3,10 @@ package cz.mendelu.ea.pokemon.domain.pokemon;
 import cz.mendelu.ea.pokemon.utils.exceptions.NotFoundException;
 import cz.mendelu.ea.pokemon.utils.response.ArrayResponse;
 import cz.mendelu.ea.pokemon.utils.response.ObjectResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +21,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/pokemons")
 @Validated
+@Tag(
+        name = "Pokemons",
+        description = "Pokemon endpoint."
+)
 public class PokemonController {
 
     @Autowired
@@ -25,8 +33,16 @@ public class PokemonController {
     }
     private final PokemonService pokemonService;
 
+
     @GetMapping(value = "", produces = "application/json")
     @Valid
+    @Operation(
+            summary = "returns all pokemons.",
+            description = "returns all pokemons"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "retuns all pokemons.")
+    })
     public ArrayResponse<PokemonResponse> getAllPokemons() {
         List<Pokemon> pokemons = pokemonService.findAll();
         return ArrayResponse.of(
@@ -35,6 +51,13 @@ public class PokemonController {
         );
     }
 
+    @Operation(
+            summary = "return pokemon by id.",
+            description = "return pokemon by id"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "return pokemon by id.")
+    })
     @GetMapping(value = "/{id}", produces = "application/json")
     @Valid
     public ObjectResponse<PokemonResponse> getPokemonById(@PathVariable Long id) {
@@ -44,6 +67,14 @@ public class PokemonController {
         return ObjectResponse.of(pokemon, PokemonResponse::new);
     }
 
+
+    @Operation(
+            summary = "create pokemon.",
+            description = "create pokemon, only accessible by authenticated SUPERADMIN"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "create pokemon, only accessible by authenticated SUPERADMIN")
+    })
     @PostMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
@@ -70,7 +101,13 @@ public class PokemonController {
         }
     }
 
-
+    @Operation(
+            summary = "update pokemon.",
+            description = "update pokemon"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "update pokemon")
+    })
     @PutMapping(value = "/{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @Valid
