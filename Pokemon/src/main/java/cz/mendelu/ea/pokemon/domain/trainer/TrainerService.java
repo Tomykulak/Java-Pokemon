@@ -26,13 +26,8 @@ public class TrainerService {
         trainerRepository.saveAll(trainers);
     }
 
-    public TrainerResponse createTrainer(TrainerRequest trainerRequest) {
-        Trainer trainer = new Trainer();
-        trainer.setName(
-                trainerRequest.getTrainerName()
-        );
-        trainerRepository.save(trainer);
-        return new TrainerResponse(trainer);
+    public Trainer createTrainer(Trainer trainer) {
+        return trainerRepository.save(trainer);
     }
 
     public Trainer findById(Long id) {

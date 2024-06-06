@@ -1,5 +1,6 @@
 package cz.mendelu.ea.pokemon.domain.trainer;
 
+
 import cz.mendelu.ea.pokemon.utils.exceptions.NotFoundException;
 import cz.mendelu.ea.pokemon.utils.response.ArrayResponse;
 import cz.mendelu.ea.pokemon.utils.response.ObjectResponse;
@@ -9,11 +10,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 
 @RestController
@@ -58,5 +59,27 @@ public class TrainerController {
         Trainer trainer = trainerService
                 .findById(id);
         return ObjectResponse.of(trainer, TrainerResponse::new);
+    }
+
+    @Operation(
+            summary = "create trainer.",
+            description = "create trainer"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "create trainer")
+    })
+    @PostMapping(produces = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public ObjectResponse<TrainerResponse> createTrainer(@RequestBody TrainerRequest trainerRequest) {
+        try {
+            Trainer trainer = new Trainer();
+            trainer.setId(trainerRequest.getId());
+            trainer.setName(trainerRequest.getTrainerName());
+            trainerService.createTrainer(trainer);
+            return ObjectResponse.of(trainer, TrainerResponse::new);
+        } catch (NotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
     }
 }
