@@ -21,6 +21,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
@@ -55,9 +56,14 @@ public class TrainerIntegrationTest {
         // Mocking the getArenaById method
         when(arenaService.getArenaById(anyLong())).thenReturn(new Arena());
 
-        // Mocking the getTrainerById method
+        // Mocking the findById method
         when(trainerService.findById(1L)).thenReturn(new Trainer(1L, "Ash Ketchum", 10, 20, 5, new Arena()));
         when(trainerService.findById(-1L)).thenThrow(new NotFoundException());
+        when(trainerService.createTrainer(any(Trainer.class))).thenAnswer(invocation -> {
+            Trainer trainer = invocation.getArgument(0);
+            trainer.setId(1L);  // Mock setting the ID
+            return trainer;
+        });
     }
 
     @Test
@@ -86,5 +92,29 @@ public class TrainerIntegrationTest {
                 .get("/trainers/{id}", -1)
                 .then()
                 .statusCode(404);  // Expecting 404 for not found
+    }
+
+    @Test
+    public void testCreateTrainer() {
+        given()
+                .contentType("application/json")
+                .body(new TrainerRequest("New Trainer", 5, 2, 3, 1L))
+                .when()
+                .post("/trainers")
+                .then()
+                .statusCode(201)
+                .body("content.name", is("New Trainer"));
+    }
+
+    @Test
+    public void testUpdateTrainer() {
+        given()
+                .contentType("application/json")
+                .body(new TrainerRequest("Updated Trainer", 7, 10, 0, 1L))
+                .when()
+                .put("/trainers/{id}", 1)
+                .then()
+                .statusCode(202)
+                .body("content.name", is("Updated Trainer"));
     }
 }

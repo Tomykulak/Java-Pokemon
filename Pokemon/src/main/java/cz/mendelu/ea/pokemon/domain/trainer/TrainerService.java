@@ -11,7 +11,6 @@ import java.util.List;
 @Service
 public class TrainerService {
     private final TrainerRepository trainerRepository;
-
     private final PokemonService pokemonService;
     private final ArenaService arenaService;
 
@@ -38,5 +37,9 @@ public class TrainerService {
         List<Trainer> trainers = new ArrayList<>();
         trainerRepository.findAll().forEach(trainers::add);
         return trainers;
+    }
+
+    public void deleteTrainer(Long id) {
+        trainerRepository.deleteById(id);
     }
 }
