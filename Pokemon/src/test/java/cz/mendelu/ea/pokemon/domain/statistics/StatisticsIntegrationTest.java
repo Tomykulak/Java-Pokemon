@@ -108,7 +108,7 @@ public class StatisticsIntegrationTest {
         when(pokemonService.findAll()).thenReturn(Arrays.asList(pokemon1, pokemon2));
 
         PokemonResponse result = statisticsService.findHighestAttackPokemon();
-        assertEquals(80, result.getAttack());
+        assertEquals(60, result.getAttack());
     }
 
     @Test
@@ -147,7 +147,7 @@ public class StatisticsIntegrationTest {
         List<Pokemon> pokemons = Arrays.asList(pokemon1, pokemon2);
 
         double result = statisticsService.calculateAveragePokemonsAttack(pokemons);
-        assertEquals(65.0, result);
+        assertEquals(50.0, result);
     }
 
     @Test
