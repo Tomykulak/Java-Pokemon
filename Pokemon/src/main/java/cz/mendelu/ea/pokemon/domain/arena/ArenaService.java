@@ -1,15 +1,18 @@
 package cz.mendelu.ea.pokemon.domain.arena;
 
 import cz.mendelu.ea.pokemon.domain.trainer.Trainer;
-import org.springframework.stereotype.Service;
 import cz.mendelu.ea.pokemon.utils.exceptions.NotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class ArenaService {
-    ArenaRepository arenaRepository;
 
+    private final ArenaRepository arenaRepository;
+
+    @Autowired
     public ArenaService(ArenaRepository arenaRepository) {
         this.arenaRepository = arenaRepository;
     }
@@ -20,7 +23,7 @@ public class ArenaService {
     }
 
     public void addTrainerToArena(Long arenaId, Trainer trainer) {
-        Arena arena = arenaRepository.findById(arenaId).orElseThrow(NotFoundException::new);
+        Arena arena = arenaRepository.findById(arenaId).orElseThrow(() -> new NotFoundException());
         arena.getTrainers().add(trainer);
         arenaRepository.save(arena);
     }
@@ -30,7 +33,7 @@ public class ArenaService {
     }
 
     public Arena getArenaById(Long arenaId) {
-        return arenaRepository.findById(arenaId).orElseThrow(NotFoundException::new);
+        return arenaRepository.findById(arenaId).orElseThrow(() -> new NotFoundException());
     }
 
     public List<Arena> findAll() {

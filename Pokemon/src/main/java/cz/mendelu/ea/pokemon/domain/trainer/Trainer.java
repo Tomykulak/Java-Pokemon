@@ -14,8 +14,6 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 public class Trainer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +34,15 @@ public class Trainer {
 
     @ManyToOne
     private Arena arena;
+
+    public Trainer(Long id, @NotEmpty String name, int level, int wins, int losses, Arena arena) {
+        this.id = id;
+        this.name = name;
+        this.level = level;
+        this.wins = wins;
+        this.losses = losses;
+        this.arena = arena;
+    }
 
     public String calculateWinRate() {
         int totalBattles = this.wins + this.losses;

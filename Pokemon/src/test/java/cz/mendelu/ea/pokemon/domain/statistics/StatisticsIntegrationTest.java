@@ -27,8 +27,8 @@ import static org.mockito.Mockito.when;
 @ActiveProfiles("test")
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Sql("/test-data/cleanup.sql")
-@Sql("/test-data/base-data.sql")
+@Sql(value = "/test-data/cleanup.sql")
+@Sql(value = "/test-data/base-data.sql")
 public class StatisticsIntegrationTest {
 
     @LocalServerPort
