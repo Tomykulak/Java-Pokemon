@@ -37,4 +37,8 @@ public class PokemonService {
         pokemon.setId(id);
         return pokemonRepository.save(pokemon);
     }
+
+    public void deletePokemon(Long id) {
+        pokemonRepository.deleteById(id);
+    }
 }

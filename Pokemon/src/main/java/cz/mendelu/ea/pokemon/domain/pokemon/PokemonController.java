@@ -101,11 +101,11 @@ public class PokemonController {
     }
 
     @Operation(
-            summary = "update pokemon.",
-            description = "update pokemon"
+            summary = "update pokemon by id.",
+            description = "update pokemon  by id"
     )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "update pokemon")
+            @ApiResponse(responseCode = "200", description = "update pokemon  by id")
     })
     @PutMapping(value = "/{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.ACCEPTED)
@@ -119,5 +119,22 @@ public class PokemonController {
         pokemonRequest.toPokemon(pokemon);
         pokemonService.updatePokemon(id, pokemon);
         return ObjectResponse.of(pokemon, PokemonResponse::new);
+    }
+
+    @Operation(
+            summary = "delete pokemon.",
+            description = "delete pokemon"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "delete pokemon")
+    })
+    @DeleteMapping(value = "/{id}", produces = "application/json")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Transactional
+    public void deletePokemon(@PathVariable Long id) {
+        Pokemon pokemon = pokemonService
+                .findById(id)
+                .orElseThrow(NotFoundException::new);
+        pokemonService.deletePokemon(id);
     }
 }
