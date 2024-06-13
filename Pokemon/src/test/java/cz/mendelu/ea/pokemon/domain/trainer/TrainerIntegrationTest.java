@@ -107,6 +107,17 @@ public class TrainerIntegrationTest {
     }
 
     @Test
+    public void testInvalidCreateTrainer() {
+        given()
+                .contentType("application/json")
+                .body(new TrainerRequest())  // Sending an empty request
+                .when()
+                .post("/trainers")
+                .then()
+                .statusCode(400);  // Expecting 400 for bad request due to validation errors
+    }
+
+    @Test
     public void testUpdateTrainer() {
         given()
                 .contentType("application/json")
