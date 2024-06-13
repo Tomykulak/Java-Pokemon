@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PokemonStatistics {
-    double calculateAveragePokemonDefense;
-    double calculateAveragePokemonAttack;
+    double calculateAveragePokemonsDefense;
+    double calculateAveragePokemonsAttack;
     PokemonResponse findHighestAttackPokemon;
     PokemonResponse findHighestDefensePokemon;
     PokemonResponse findFastestPokemon;
