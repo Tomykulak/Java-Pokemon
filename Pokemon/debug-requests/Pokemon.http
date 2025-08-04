@@ -1,0 +1,22 @@
+### get all pokemons
+GET http://localhost:8090/pokemons
+
+### create pokemon
+POST http://localhost:8090/pokemons
+Content-Type: application/json
+
+{
+  "id": 501,
+  "name": "tomysaur",
+  "type1": "Grass",
+  "type2": "Ground",
+  "total": 500,
+  "hp": 20,
+  "attack": 33,
+  "defense": 15,
+  "sp_attack": 40,
+  "sp_defense": 80,
+  "speed": 10,
+  "generation": 2,
+  "legendary": false
+}
